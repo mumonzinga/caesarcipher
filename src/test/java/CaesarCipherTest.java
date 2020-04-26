@@ -10,9 +10,9 @@ import java.util.List;
 
 public class CaesarCipherTest {
     @Test
-    public void newCaesarCipher_getEncodedRightText_B() {
+    public void newCaesarCipher_encryptRight_getEncodedRightText_B() {
         CaeserCipher testCipher = new CaeserCipher("B", "Z", "A", 1, 1);
-        assertEquals("B", testCipher.getEncodedRightText());
+        assertEquals("B", testCipher.encryptRight("B", 1));
     }
 
     @Test
