@@ -5,7 +5,7 @@ public class CaeserCipher {
     private int latchKey;
     private int approvedKey;
 
-    public CaeserCipher(String encryptedRightText, String encryptedLeftText, String decryptedText, int shiftKey) {
+    public CaeserCipher(String encryptedRightText, String encryptedLeftText, String decryptedText, int shiftKey, int chosenKey) {
         this.encodedRightText = encryptedRightText;
         this.encodedLeftText = encryptedLeftText;
         this.decodedText = decryptedText;
@@ -13,22 +13,25 @@ public class CaeserCipher {
         this.approvedKey = chosenKey;
     }
 
-        public String getEncodedRightText() {
-            return encodedRightText;
-        }
-        public String getEncodedLeftText() {
-        return encodedLeftText;
-        }
-        public String getDecodedText() {
-        return decodedText;
-        }
+    public String getEncodedRightText() {
+        return encodedRightText;
+    }
 
-        public int getLatchKey() {
+    public String getEncodedLeftText() {
+        return encodedLeftText;
+    }
+
+    public String getDecodedText() {
+        return decodedText;
+    }
+
+    public int getLatchKey() {
         return latchKey;
-        }
-        public int getApprovedKey() {
+    }
+
+    public int getApprovedKey() {
         return approvedKey;
-        }
+    }
 
     public static final String alphabet = "abcdefghijklmnopqrstuvwxyz";
 
@@ -51,6 +54,7 @@ public class CaeserCipher {
 
         return cipherRightText;
     }
+
     public static String encryptLeft(String encodedLeftText, int latchKey) {
         encodedLeftText = encodedLeftText.toLowerCase();
         char[] cl = encodedLeftText.toCharArray();
@@ -66,29 +70,43 @@ public class CaeserCipher {
         }
         return cipherLeftText;
     }
-    public static String Decrypt(String decodedText,int approvedKey) {
+
+    public static String Decrypt(String decodedText, int approvedKey) {
         decodedText = decodedText.toLowerCase();
         char[] cd = decodedText.toCharArray();
-        boolean approvedKeyRight = 1>26;
-        String decodeRight;
+        boolean approvedKeyRight = 1 > 26;
+        String decodeRight = "";
+        String decodeLeft = "";
         String error = "";
         String cipherDecode = "";
 
-        if (approvedKey <1 || approvedKey > 26) {
+        if (approvedKey < 1 || approvedKey > 26) {
             error = "key must be between 1 to 25";
-        } else if (approvedKey == -(approvedKey) {
-            for  (int i = 0; i < cipherDecode.length(); i++)
-            {
-                int charDeKey = alphabet.indexOf(cipherDecode.charAt(i));
-                int chosenKey = (charDeKey - approvedKey) % 26;
-                if (chosenKey <  0)
-                {
+        } else if (decodeRight == "right") {
+            for (int i = 0; i < cipherDecode.length(); i++) {
+                int charDerKey = alphabet.indexOf(cipherDecode.charAt(i));
+                int chosenKey = (charDerKey - approvedKey) % 26;
+                if (chosenKey < 0) {
                     chosenKey = alphabet.length() + chosenKey;
                 }
                 char cipherDecodech = alphabet.charAt(chosenKey);
                 cipherDecode = String.valueOf(cipherDecodech);
             }
             return cipherDecode;
+        } else if (decodeLeft == "left") {
+            for (int i = 0; i < cipherDecode.length(); i--) {
+                int charDelKey = alphabet.indexOf(cipherDecode.charAt(i));
+                int chosenke = (charDelKey + approvedKey) % 26;
+                if (chosenke > 0) {
+                    chosenke = alphabet.length() - chosenke;
+                }
+                char cipherDecodecl = alphabet.charAt(chosenke);
+                cipherDecode = String.valueOf(cipherDecodecl);
+
+            }
+
         }
+        return cipherDecode;
     }
+
 }
