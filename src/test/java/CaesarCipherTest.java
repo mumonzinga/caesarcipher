@@ -48,6 +48,6 @@ public class CaesarCipherTest {
     @Test
     public void newCaesarCipher_decrypt_testLetterCase_NbNb() {
         CaeserCipher testCipher = new CaeserCipher("LzLz", "NbNb", "MaMa", 1, 1 );
-        assertEquals("MaMa", testCipher.getDecodedText());
+        assertEquals("MaMa", testCipher.decrypt("MaMa", 1));
     }
 }

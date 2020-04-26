@@ -72,7 +72,7 @@ public class CaeserCipher {
         return cipherLeftText;
     }
 
-    public static String Decrypt(String decodedText, int approvedKey) {
+    public static String decrypt(String decodedText, int approvedKey) {
         decodedText = decodedText.toUpperCase();
         char[] cd = decodedText.toCharArray();
         String decodeRight = "";
