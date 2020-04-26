@@ -33,19 +33,20 @@ public class CaeserCipher {
         return approvedKey;
     }
 
-    public static final String alphabet = "abcdefghijklmnopqrstuvwxyz";
+    public static final String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     public static String encryptRight(String encodedRightText, int latchKey) {
-        encodedRightText = encodedRightText.toLowerCase();
+        encodedRightText = encodedRightText.toUpperCase();
         char[] cr = encodedRightText.toCharArray();
         String cipherRightText = " ";
 
 
-        for (int i = 0; i < encodedRightText.length(); i++) {
+
+        for (int i = 0; i <encodedRightText.length() ; i++) {
 
 
             int charRightKey = alphabet.indexOf(encodedRightText.charAt(i));
-            int indexRight = (latchKey + charRightKey) % 26;
+            int indexRight = (charRightKey-latchKey) % 26 +latchKey;
             char CipherRightch = alphabet.charAt(indexRight);
             cipherRightText = String.valueOf(CipherRightch);
 
@@ -56,14 +57,14 @@ public class CaeserCipher {
     }
 
     public static String encryptLeft(String encodedLeftText, int latchKey) {
-        encodedLeftText = encodedLeftText.toLowerCase();
+        encodedLeftText = encodedLeftText.toUpperCase();
         char[] cl = encodedLeftText.toCharArray();
         String cipherLeftText = "";
 
-        for (int i = 0; i < encodedLeftText.length(); i--) {
+        for (int i = 0; i < encodedLeftText.length(); i++) {
 
             int charLeftKey = alphabet.indexOf(encodedLeftText.charAt(i));
-            int indexLeft = (latchKey - charLeftKey) % 26;
+            int indexLeft = (latchKey + charLeftKey) % 26;
             char CipherLeftch = alphabet.charAt((indexLeft));
             cipherLeftText = String.valueOf(CipherLeftch);
 
@@ -72,9 +73,8 @@ public class CaeserCipher {
     }
 
     public static String Decrypt(String decodedText, int approvedKey) {
-        decodedText = decodedText.toLowerCase();
+        decodedText = decodedText.toUpperCase();
         char[] cd = decodedText.toCharArray();
-        boolean approvedKeyRight = 1 > 26;
         String decodeRight = "";
         String decodeLeft = "";
         String error = "";
