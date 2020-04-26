@@ -45,4 +45,9 @@ public class CaesarCipherTest {
         CaeserCipher testCipher = new CaeserCipher("zab25","bcd25", "abc25",1,1);
         assertEquals("zab25", testCipher.getEncodedRightText());
     }
+    @Test
+    public void newCaesarCipher_decrypt_testLetterCase_NbNb() {
+        CaeserCipher testCipher = new CaeserCipher("LzLz", "NbNb", "MaMa", 1, 1 );
+        assertEquals("MaMa", testCipher.getDecodedText());
+    }
 }
