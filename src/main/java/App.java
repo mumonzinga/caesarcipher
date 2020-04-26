@@ -133,6 +133,9 @@ public class App {
         } else  if (request.equalsIgnoreCase("quit")) {
             System.out.println("Ending the application ... ");
             System.exit(0);
+        } else  if (request.equalsIgnoreCase("quit")) {
+            System.out.println("Ending the application ... ");
+            System.exit(0);
 
         }
     }
