@@ -33,13 +33,25 @@ public class App {
                 System.out.println("Enter your approved Latch Key");
                 int latchKey = myScanner.nextInt();
 
-                CaeserCipher encryptT = new CaeserCipher("z", "b", "a", 1, 1);
+                CaeserCipher encryptT = new CaeserCipher("Z", "B", "A", 1, 1);
 
                 String encodedRightText = encryptT.encryptRight(encodedRightScript, latchKey);
                 System.out.println("Here is your Encrypted/encoded script to the Right");
                 System.out.println(encodedRightText);
                 System.out.println("-------------------------------------------");
             } else if (request.equalsIgnoreCase("left")) {
+                System.out.println("Enter text to Encrypt");
+                String encodedLeftScript = myScanner.nextLine();
+                System.out.println("Enter your approved Latch Key");
+                int latchKey = myScanner.nextInt();
+
+                CaeserCipher encryptL = new CaeserCipher("C", "I", "F", 3, 3);
+
+                String encodedLeftText = encryptL.encryptLeft(encodedLeftScript, latchKey);
+                System.out.println("Here is your Encrypted/encoded script to the Left");
+                System.out.println(encodedLeftText);
+                System.out.println("-------------------------------------------");
+
 
 
             }

@@ -64,7 +64,7 @@ public class CaeserCipher {
         for (int i = 0; i < encodedLeftText.length(); i++) {
 
             int charLeftKey = alphabet.indexOf(encodedLeftText.charAt(i));
-            int indexLeft = (latchKey + charLeftKey) % 26;
+            int indexLeft = (latchKey - latchKey) % 26 +charLeftKey;
             char CipherLeftch = alphabet.charAt((indexLeft));
             cipherLeftText = String.valueOf(CipherLeftch);
 
