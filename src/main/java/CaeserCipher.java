@@ -41,12 +41,11 @@ public class CaeserCipher {
         String cipherRightText = " ";
 
 
-
-        for (int i = 0; i <encodedRightText.length() ; i++) {
+        for (int i = 0; i < encodedRightText.length(); i++) {
 
 
             int charRightKey = alphabet.indexOf(encodedRightText.charAt(i));
-            int indexRight = (charRightKey-latchKey) % 26 +latchKey;
+            int indexRight = (charRightKey - latchKey) % 26 + latchKey;
             char CipherRightch = alphabet.charAt(indexRight);
             cipherRightText = String.valueOf(CipherRightch);
 
@@ -64,7 +63,7 @@ public class CaeserCipher {
         for (int i = 0; i < encodedLeftText.length(); i++) {
 
             int charLeftKey = alphabet.indexOf(encodedLeftText.charAt(i));
-            int indexLeft = (latchKey - latchKey) % 26 +charLeftKey;
+            int indexLeft = (latchKey - latchKey) % 26 + charLeftKey;
             char CipherLeftch = alphabet.charAt((indexLeft));
             cipherLeftText = String.valueOf(CipherLeftch);
 
@@ -80,12 +79,12 @@ public class CaeserCipher {
         String error = "";
         String cipherDecode = "";
 
-        if (approvedKey < 1 || approvedKey > 26) {
+        if (approvedKey < -26 || approvedKey > 26) {
             error = "key must be between 1 to 25";
         } else if (decodeRight == "right") {
             for (int i = 0; i < cipherDecode.length(); i++) {
                 int charDerKey = alphabet.indexOf(cipherDecode.charAt(i));
-                int chosenKey = (charDerKey - approvedKey) % 26;
+                int chosenKey = 26 - (charDerKey - approvedKey);
                 if (chosenKey < 0) {
                     chosenKey = alphabet.length() + chosenKey;
                 }
@@ -96,18 +95,14 @@ public class CaeserCipher {
         } else if (decodeLeft == "left") {
             for (int i = 0; i < cipherDecode.length(); i--) {
                 int charDelKey = alphabet.indexOf(cipherDecode.charAt(i));
-                int chosenke = (charDelKey + approvedKey) % 26;
+                int chosenke = (charDelKey) + (26 - approvedKey);
                 if (chosenke > 0) {
                     chosenke = alphabet.length() - chosenke;
                 }
                 char cipherDecodecl = alphabet.charAt(chosenke);
                 cipherDecode = String.valueOf(cipherDecodecl);
-
             }
-
         }
         return cipherDecode;
     }
-
-
 }

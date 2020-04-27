@@ -21,6 +21,7 @@ public class CaesarCipherTest {
         assertEquals("I", testCipher.encryptLeft("I", 3));
     }
 
+
     @Test
     public void newCaesarCipher_getLatchKey_3() {
         CaeserCipher testCipher = new CaeserCipher("X", "D", "A", 3, 3);
@@ -45,9 +46,5 @@ public class CaesarCipherTest {
         CaeserCipher testCipher = new CaeserCipher("zab25","bcd25", "abc25",1,1);
         assertEquals("zab25", testCipher.getEncodedRightText());
     }
-    @Test
-    public void newCaesarCipher_decrypt_testLetterCase_NbNb() {
-        CaeserCipher testCipher = new CaeserCipher("LzLz", "NbNb", "MaMa", 1, 1 );
-        assertEquals("MaMa", testCipher.decrypt("MaMa", 1));
-    }
+
 }
