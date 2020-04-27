@@ -11,7 +11,7 @@ import java.util.List;
 public class CaesarCipherTest {
     @Test
     public void newCaesarCipher_encryptRight_getEncodedRightText_Z() {
-        CaeserCipher testCipher = new CaeserCipher("Z", "b", "a", 1, 1);
+        CaeserCipher testCipher = new CaeserCipher("Z", "B", "A", 1, 1);
         assertEquals("Z", testCipher.encryptRight("Z", 1));
     }
 
@@ -20,7 +20,16 @@ public class CaesarCipherTest {
         CaeserCipher testCipher = new CaeserCipher("C", "I", "F", 3, 3);
         assertEquals("I", testCipher.encryptLeft("I", 3));
     }
-
+    @Test
+    public void newCaesarCipher_getEncodedLeftText_I() {
+        CaeserCipher testCipher = new CaeserCipher("C", "I", "F", 3, 3);
+        assertEquals("I", testCipher.getEncodedLeftText());
+    }
+    @Test
+    public void newCaesarCipher_getEncodedRightText_C() {
+        CaeserCipher testCipher = new CaeserCipher("C", "I", "F", 3, 3);
+        assertEquals("C", testCipher.getEncodedRightText());
+    }
 
     @Test
     public void newCaesarCipher_getLatchKey_3() {

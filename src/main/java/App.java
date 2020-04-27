@@ -24,11 +24,10 @@ public class App {
         System.out.println(" ");
         System.out.println("Do you want to encrypt, decrypt or quit?");
         String request = myScanner.nextLine();
-        String decodedText = "";
-
-
         if(request.equalsIgnoreCase("encrypt")) {
             System.out.println("To the Right or to the Left?");
+
+                 request = myScanner.nextLine();
             if(request.equalsIgnoreCase("right")) {
                 System.out.println("Enter text to Encrypt");
                 String encodedRightScript = myScanner.nextLine();
@@ -37,7 +36,7 @@ public class App {
 
                 CaeserCipher encryptT = new CaeserCipher("Z", "B", "A", 1, 1);
 
-                String encodedRightText = encryptT.encryptRight(encodedRightScript, latchKey);
+                String encodedRightText = encryptT.getEncodedRightText();
                 System.out.println("Here is your Encrypted/encoded script to the Right");
                 System.out.println(encodedRightText);
                 System.out.println("-------------------------------------------");
@@ -49,7 +48,7 @@ public class App {
 
                 CaeserCipher encryptL = new CaeserCipher("C", "I", "F", 3, 3);
 
-                String encodedLeftText = encryptL.encryptLeft(encodedLeftScript, latchKey);
+                String encodedLeftText = encryptL.getEncodedLeftText();
                 System.out.println("Here is your Encrypted/encoded script to the Left");
                 System.out.println(encodedLeftText);
                 System.out.println("-------------------------------------------");
@@ -57,28 +56,30 @@ public class App {
         }
         else if(request.equalsIgnoreCase("decrypt")) {
             System.out.println("To the Right or to the Left?");
+            request = myScanner.nextLine();
             if(request.equalsIgnoreCase("right")) {
                 System.out.println("Enter text to Decrypt");
                 String decodedRightScript = myScanner.nextLine();
                 System.out.println("Enter your approved Key");
                 int approvedKey = myScanner.nextInt();
                 CaeserCipher decryptT = new CaeserCipher("Z", "B", "A", 1, 1);
+                String decodedText = "";
                 decodedText = decryptT.decrypt(decodedRightScript, approvedKey);
                 System.out.println("Here is your Decrypted/decoded script to the Right");
                 System.out.println(decodedText);
                 System.out.println("Does it make sense?\n");
                 System.out.println("Yes or No");
-                String answer = myScanner.nextLine();
-                if (answer.equalsIgnoreCase("yes")) {
+                request = myScanner.nextLine();
+                if (request.equalsIgnoreCase("yes")) {
                     System.out.println("Do you want to quit?");
                     String quitter = myScanner.nextLine();
-                    if (answer.equalsIgnoreCase("yes")) {
+                    if (request.equalsIgnoreCase("yes")) {
                         System.out.println("Ending the application ...");
                         System.exit(0);
                     } else {
                         System.out.println("Do you want to encrypt or decrypt");
                     }
-                } else if (answer.equalsIgnoreCase("no")) {
+                } else if (request.equalsIgnoreCase("no")) {
                     System.out.println("Shifting to the left ...");
                     decodedText = decryptT.decrypt(decodedRightScript, approvedKey);
                     System.out.println(decodedText);
@@ -89,22 +90,22 @@ public class App {
                 System.out.println("Enter your approved Key");
                 int approvedKey = myScanner.nextInt();
                 CaeserCipher decryptL = new CaeserCipher("Z", "B", "A", 1, 1);
-                decodedText = decryptL.decrypt(decodedLeftScript, approvedKey);
+                 String decodedText = decryptL.decrypt(decodedLeftScript, approvedKey);
                 System.out.println("Here is your Decrypted/decoded script to the Left");
                 System.out.println(decodedText);
                 System.out.println("Does it make sense?\n");
                 System.out.println("Yes or No");
-                String answer = myScanner.nextLine();
-                if (answer.equalsIgnoreCase("yes")) {
+                request = myScanner.nextLine();
+                if (request.equalsIgnoreCase("yes")) {
                     System.out.println("Do you want to quit?");
                     String quitter = myScanner.nextLine();
-                    if (answer.equalsIgnoreCase("yes")) {
+                    if (request.equalsIgnoreCase("yes")) {
                         System.out.println("Ending the application ...");
                         System.exit(0);
                     } else {
                         System.out.println("Do you want to encrypt or decrypt");
                     }
-                } else if (answer.equalsIgnoreCase("no")) {
+                } else if (request.equalsIgnoreCase("no")) {
                     System.out.println("Shifting to the right ...");
                     decodedText = decryptL.decrypt(decodedLeftScript, approvedKey);
                     System.out.println(decodedText);
