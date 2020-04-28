@@ -21,7 +21,7 @@ This application allows users to do the following:
 ## Project setup / requirements
 1.Make sure you have all the Requirements of running Java apps installed such as JUnit, intellij, SDK, JDK.
 
-2.Clone the project into your machine from https://github.com/mumonzinga/ceasercipher.git
+2.Clone the project into your machine from https://github.com/mumonzinga/caesarcipher.git
 
 3.Run javac ceasercipher.java to compile and java ceasercipher to run the program
 
