@@ -24,6 +24,7 @@ public class App {
         System.out.println(" ");
         System.out.println("Do you want to encrypt, decrypt or quit?");
         String request = myScanner.nextLine();
+        String quitter = myScanner.nextLine();
         if(request.equalsIgnoreCase("encrypt")) {
             System.out.println("To the Right or to the Left?");
 
@@ -62,17 +63,19 @@ public class App {
                 String decodedRightScript = myScanner.nextLine();
                 System.out.println("Enter your approved Key");
                 int approvedKey = myScanner.nextInt();
+
                 CaeserCipher decryptT = new CaeserCipher("Z", "B", "A", 1, 1);
+
                 String decodedText = "";
-                decodedText = decryptT.decrypt(decodedRightScript, approvedKey);
+                decodedText = decryptT.getDecodedText();
                 System.out.println("Here is your Decrypted/decoded script to the Right");
                 System.out.println(decodedText);
-                System.out.println("Does it make sense?\n");
-                System.out.println("Yes or No");
+                System.out.println("Does it make sense, yes or no?");
+
                 request = myScanner.nextLine();
                 if (request.equalsIgnoreCase("yes")) {
                     System.out.println("Do you want to quit?");
-                    String quitter = myScanner.nextLine();
+                    request = myScanner.nextLine();
                     if (request.equalsIgnoreCase("yes")) {
                         System.out.println("Ending the application ...");
                         System.exit(0);
@@ -81,24 +84,30 @@ public class App {
                     }
                 } else if (request.equalsIgnoreCase("no")) {
                     System.out.println("Shifting to the left ...");
-                    decodedText = decryptT.decrypt(decodedRightScript, approvedKey);
+                    CaeserCipher decryptL = new CaeserCipher("Z", "B", "A", 1, 1);
+
+                    decodedText = decryptL.getDecodedText();
+                    System.out.println("Here is your Decrypted/decoded script to the Left");
+
                     System.out.println(decodedText);
                 }
-            } else if(request.equalsIgnoreCase("left")) {
+            }else if(request.equalsIgnoreCase("left")) {
                 System.out.println("Enter text to Decrypt");
                 String decodedLeftScript = myScanner.nextLine();
                 System.out.println("Enter your approved Key");
                 int approvedKey = myScanner.nextInt();
+
                 CaeserCipher decryptL = new CaeserCipher("Z", "B", "A", 1, 1);
-                 String decodedText = decryptL.decrypt(decodedLeftScript, approvedKey);
+
+                 String decodedText = decryptL.getDecodedText();
                 System.out.println("Here is your Decrypted/decoded script to the Left");
                 System.out.println(decodedText);
-                System.out.println("Does it make sense?\n");
-                System.out.println("Yes or No");
+                System.out.println("Does it make sense, yes or no?");
                 request = myScanner.nextLine();
                 if (request.equalsIgnoreCase("yes")) {
                     System.out.println("Do you want to quit?");
-                    String quitter = myScanner.nextLine();
+
+                    request = myScanner.nextLine();
                     if (request.equalsIgnoreCase("yes")) {
                         System.out.println("Ending the application ...");
                         System.exit(0);
@@ -107,7 +116,9 @@ public class App {
                     }
                 } else if (request.equalsIgnoreCase("no")) {
                     System.out.println("Shifting to the right ...");
-                    decodedText = decryptL.decrypt(decodedLeftScript, approvedKey);
+                    CaeserCipher decryptT = new CaeserCipher("Z", "B", "A", 1, 1);
+
+                    decodedText = decryptT.getDecodedText();
                     System.out.println(decodedText);
                     System.out.println("-------------------------------------------");
                 }

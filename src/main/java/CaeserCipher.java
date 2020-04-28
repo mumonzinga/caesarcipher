@@ -1,3 +1,5 @@
+import static java.lang.System.*;
+
 public class CaeserCipher {
     private String encodedRightText;
     private String encodedLeftText;
@@ -78,6 +80,7 @@ public class CaeserCipher {
         String decodeLeft = "";
         String error = "";
         String cipherDecode = "";
+        String request = "";
 
         if (approvedKey < -26 || approvedKey > 26) {
             error = "key must be between 1 to 25";
@@ -92,6 +95,20 @@ public class CaeserCipher {
                 cipherDecode = String.valueOf(cipherDecodech);
             }
             return cipherDecode;
+            if(request == "yes") {
+                exit(0);
+            } else if(request == "no"){
+                for (int i = 0; i < cipherDecode.length(); i--) {
+                    int charDelKey = alphabet.indexOf(cipherDecode.charAt(i));
+                    int chosenke = (charDelKey) + (26 - approvedKey);
+                    if (chosenke > 0) {
+                        chosenke = alphabet.length() - chosenke;
+                    }
+                    char cipherDecodecl = alphabet.charAt(chosenke);
+                    cipherDecode = String.valueOf(cipherDecodecl);
+                }
+            }
+            return cipherDecode;
         } else if (decodeLeft == "left") {
             for (int i = 0; i < cipherDecode.length(); i--) {
                 int charDelKey = alphabet.indexOf(cipherDecode.charAt(i));
@@ -104,5 +121,8 @@ public class CaeserCipher {
             }
         }
         return cipherDecode;
+        if(request == "no") {
+            exit();
+        } else if(request == "no");
     }
 }
