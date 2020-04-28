@@ -27,31 +27,31 @@ public class App {
         String quitter = myScanner.nextLine();
         if(request.equalsIgnoreCase("encrypt")) {
             System.out.println("To the Right or to the Left?");
-
                  request = myScanner.nextLine();
             if(request.equalsIgnoreCase("right")) {
                 System.out.println("Enter text to Encrypt");
-                String encodedRightScript = myScanner.nextLine();
+                String encodedRightText = myScanner.nextLine();
                 System.out.println("Enter your approved Latch Key");
                 int latchKey = myScanner.nextInt();
 
-                CaeserCipher encryptT = new CaeserCipher("Z", "B", "A", 1, 1);
+                CaesarCipher encryptT = new CaesarCipher("Z", "B", "A", 1, 1);
 
-                String encodedRightText = encryptT.getEncodedRightText();
+                String encodedRightScript = encryptT.getEncodedRightText();
                 System.out.println("Here is your Encrypted/encoded script to the Right");
-                System.out.println(encodedRightText);
+                System.out.println(encodedRightScript);
                 System.out.println("-------------------------------------------");
+
             } else if (request.equalsIgnoreCase("left")) {
                 System.out.println("Enter text to Encrypt");
-                String encodedLeftScript = myScanner.nextLine();
+                String encodedLeftText = myScanner.nextLine();
                 System.out.println("Enter your approved Latch Key");
                 int latchKey = myScanner.nextInt();
 
-                CaeserCipher encryptL = new CaeserCipher("C", "I", "F", 3, 3);
+                CaesarCipher encryptL = new CaesarCipher("C", "I", "F", 3, 3);
 
-                String encodedLeftText = encryptL.getEncodedLeftText();
+                String encodedLeftScript = encryptL.getEncodedLeftText();
                 System.out.println("Here is your Encrypted/encoded script to the Left");
-                System.out.println(encodedLeftText);
+                System.out.println(encodedLeftScript);
                 System.out.println("-------------------------------------------");
             }
         }
@@ -60,54 +60,53 @@ public class App {
             request = myScanner.nextLine();
             if(request.equalsIgnoreCase("right")) {
                 System.out.println("Enter text to Decrypt");
-                String decodedRightScript = myScanner.nextLine();
+                String decodedText = myScanner.nextLine();
                 System.out.println("Enter your approved Key");
                 int approvedKey = myScanner.nextInt();
 
-                CaeserCipher decryptT = new CaeserCipher("Z", "B", "A", 1, 1);
+                CaesarCipher decryptT = new CaesarCipher("Z", "B", "A", 1, 1);
 
-                String decodedText = "";
-                decodedText = decryptT.getDecodedText();
+                String decodedScript = "";
+                decodedScript = decryptT.getDecodedText();
                 System.out.println("Here is your Decrypted/decoded script to the Right");
-                System.out.println(decodedText);
+                System.out.println(decodedScript);
                 System.out.println("Does it make sense, yes or no?");
-
                 request = myScanner.nextLine();
                 if (request.equalsIgnoreCase("yes")) {
                     System.out.println("Do you want to quit?");
                     request = myScanner.nextLine();
                     if (request.equalsIgnoreCase("yes")) {
                         System.out.println("Ending the application ...");
+                        System.out.println(decodedScript);
                         System.exit(0);
                     } else {
                         System.out.println("Do you want to encrypt or decrypt");
                     }
                 } else if (request.equalsIgnoreCase("no")) {
                     System.out.println("Shifting to the left ...");
-                    CaeserCipher decryptL = new CaeserCipher("Z", "B", "A", 1, 1);
+                    CaesarCipher decryptL = new CaesarCipher("Z", "B", "A", 1, 1);
 
-                    decodedText = decryptL.getDecodedText();
+                    decodedScript = decryptL.getDecodedText();
                     System.out.println("Here is your Decrypted/decoded script to the Left");
 
-                    System.out.println(decodedText);
+                    System.out.println(decodedScript);
                 }
             }else if(request.equalsIgnoreCase("left")) {
                 System.out.println("Enter text to Decrypt");
-                String decodedLeftScript = myScanner.nextLine();
+                String decodedText = myScanner.nextLine();
                 System.out.println("Enter your approved Key");
                 int approvedKey = myScanner.nextInt();
 
-                CaeserCipher decryptL = new CaeserCipher("Z", "B", "A", 1, 1);
+                CaesarCipher decryptL = new CaesarCipher("Z", "B", "A", 1, 1);
 
-                 String decodedText = decryptL.getDecodedText();
+                 String decodedScript = decryptL.getDecodedText();
                 System.out.println("Here is your Decrypted/decoded script to the Left");
-                System.out.println(decodedText);
+                System.out.println(decodedScript);
                 System.out.println("Does it make sense, yes or no?");
                 request = myScanner.nextLine();
                 if (request.equalsIgnoreCase("yes")) {
                     System.out.println("Do you want to quit?");
-
-                    request = myScanner.nextLine();
+                    request =myScanner.nextLine();
                     if (request.equalsIgnoreCase("yes")) {
                         System.out.println("Ending the application ...");
                         System.exit(0);
@@ -116,10 +115,10 @@ public class App {
                     }
                 } else if (request.equalsIgnoreCase("no")) {
                     System.out.println("Shifting to the right ...");
-                    CaeserCipher decryptT = new CaeserCipher("Z", "B", "A", 1, 1);
+                    CaesarCipher decryptT = new CaesarCipher("Z", "B", "A", 1, 1);
 
-                    decodedText = decryptT.getDecodedText();
-                    System.out.println(decodedText);
+                    decodedScript = decryptT.getDecodedText();
+                    System.out.println(decodedScript);
                     System.out.println("-------------------------------------------");
                 }
             }

@@ -1,13 +1,19 @@
 import static java.lang.System.*;
+import static java.lang.System.exit;
 
-public class CaeserCipher {
+
+
+
+public class CaesarCipher {
     private String encodedRightText;
     private String encodedLeftText;
     private String decodedText;
     private int latchKey;
     private int approvedKey;
+    private String cipherRightText;
 
-    public CaeserCipher(String encryptedRightText, String encryptedLeftText, String decryptedText, int shiftKey, int chosenKey) {
+
+    public CaesarCipher(String encryptedRightText, String encryptedLeftText, String decryptedText, int shiftKey, int chosenKey) {
         this.encodedRightText = encryptedRightText;
         this.encodedLeftText = encryptedLeftText;
         this.decodedText = decryptedText;
@@ -35,42 +41,36 @@ public class CaeserCipher {
         return approvedKey;
     }
 
+
     public static final String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     public static String encryptRight(String encodedRightText, int latchKey) {
         encodedRightText = encodedRightText.toUpperCase();
         char[] cr = encodedRightText.toCharArray();
-        String cipherRightText = " ";
-
-
+        String encodedRightScript = "";
         for (int i = 0; i < encodedRightText.length(); i++) {
-
-
             int charRightKey = alphabet.indexOf(encodedRightText.charAt(i));
-            int indexRight = (charRightKey - latchKey) % 26 + latchKey;
+            int indexRight = (latchKey-latchKey %26 + charRightKey);
             char CipherRightch = alphabet.charAt(indexRight);
-            cipherRightText = String.valueOf(CipherRightch);
-
+            encodedRightScript = String.valueOf(CipherRightch);
         }
-
-
-        return cipherRightText;
+        return encodedRightScript;
     }
 
     public static String encryptLeft(String encodedLeftText, int latchKey) {
         encodedLeftText = encodedLeftText.toUpperCase();
         char[] cl = encodedLeftText.toCharArray();
-        String cipherLeftText = "";
+        String encodedLeftScript = "";
 
-        for (int i = 0; i < encodedLeftText.length(); i++) {
+        for (int i = 0; i <encodedLeftText.length(); i++) {
 
             int charLeftKey = alphabet.indexOf(encodedLeftText.charAt(i));
-            int indexLeft = (latchKey - latchKey) % 26 + charLeftKey;
+            int indexLeft = (charLeftKey+latchKey) % 26 - latchKey ;
             char CipherLeftch = alphabet.charAt((indexLeft));
-            cipherLeftText = String.valueOf(CipherLeftch);
+            encodedLeftScript = String.valueOf(CipherLeftch);
 
         }
-        return cipherLeftText;
+        return encodedLeftScript;
     }
 
     public static String decrypt(String decodedText, int approvedKey) {
@@ -79,50 +79,35 @@ public class CaeserCipher {
         String decodeRight = "";
         String decodeLeft = "";
         String error = "";
-        String cipherDecode = "";
-        String request = "";
+        String decodedScript = "";
 
-        if (approvedKey < -26 || approvedKey > 26) {
+        if (approvedKey < 1 || approvedKey > 26) {
             error = "key must be between 1 to 25";
         } else if (decodeRight == "right") {
-            for (int i = 0; i < cipherDecode.length(); i++) {
-                int charDerKey = alphabet.indexOf(cipherDecode.charAt(i));
-                int chosenKey = 26 - (charDerKey - approvedKey);
+            for (int i = 0; i < decodedText.length(); i++) {
+                int charDerKey = alphabet.indexOf(decodedText.charAt(i));
+                int chosenKey =  (charDerKey +approvedKey) %26-approvedKey;
                 if (chosenKey < 0) {
-                    chosenKey = alphabet.length() + chosenKey;
+                    chosenKey = alphabet.length() - chosenKey;
                 }
                 char cipherDecodech = alphabet.charAt(chosenKey);
-                cipherDecode = String.valueOf(cipherDecodech);
+                decodedScript = String.valueOf(cipherDecodech);
             }
-            return cipherDecode;
-            if(request == "yes") {
-                exit(0);
-            } else if(request == "no"){
-                for (int i = 0; i < cipherDecode.length(); i--) {
-                    int charDelKey = alphabet.indexOf(cipherDecode.charAt(i));
-                    int chosenke = (charDelKey) + (26 - approvedKey);
-                    if (chosenke > 0) {
-                        chosenke = alphabet.length() - chosenke;
-                    }
-                    char cipherDecodecl = alphabet.charAt(chosenke);
-                    cipherDecode = String.valueOf(cipherDecodecl);
-                }
-            }
-            return cipherDecode;
+            return decodedScript;
         } else if (decodeLeft == "left") {
-            for (int i = 0; i < cipherDecode.length(); i--) {
-                int charDelKey = alphabet.indexOf(cipherDecode.charAt(i));
-                int chosenke = (charDelKey) + (26 - approvedKey);
-                if (chosenke > 0) {
-                    chosenke = alphabet.length() - chosenke;
+            for (int i = 0; i < decodedText.length(); i++) {
+                int charDelKey = alphabet.indexOf(decodedText.charAt(i));
+                int chosenke = (charDelKey-approvedKey) % 26 ;
+                if (chosenke < 0) {
+                    chosenke = alphabet.length() +chosenke;
                 }
                 char cipherDecodecl = alphabet.charAt(chosenke);
-                cipherDecode = String.valueOf(cipherDecodecl);
+                decodedScript = String.valueOf(cipherDecodecl);
             }
         }
-        return cipherDecode;
-        if(request == "no") {
-            exit();
-        } else if(request == "no");
+        return decodedScript;
     }
 }
+
+
+
